@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>INKKME Studio | Tattoo • Piercing • Laser Tattoo Removal</title>
+<meta name="description" content="INKKME Studio – Premium Tattoo, Piercing & Laser Tattoo Removal studio. Custom ink, sterile piercing, advanced laser removal." />
+
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --black:#000;
+  --white:#fff;
+  --orange:#ff6a00;
+}
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body {
+  background:var(--black);
+  color:var(--white);
+  font-family:'Inter', sans-serif;
+  line-height:1.6;
+}
+
+section {
+  padding:60px 8%;
+}
+
+h1,h2,h3 {
+  font-family:'Oswald', sans-serif;
+  letter-spacing:1px;
+}
+
+a {
+  color:var(--orange);
+  text-decoration:none;
+}
+
+button {
+  padding:14px 26px;
+  border:none;
+  cursor:pointer;
+  font-weight:500;
+}
+
+.btn-orange {
+  background:var(--orange);
+  color:#000;
+}
+
+.btn-outline {
+  background:transparent;
+  color:var(--white);
+  border:1px solid var(--white);
+}
+
+/* HERO */
+.hero {
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:20px;
+}
+
+.hero h1 {
+  font-size:64px;
+}
+
+.hero p {
+  max-width:600px;
+  opacity:.85;
+}
+
+/* CARDS */
+.cards {
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(220px,1fr));
+  gap:24px;
+}
+
+.card {
+  border:1px solid #222;
+  padding:28px;
+  cursor:pointer;
+  transition:.3s;
+}
+
+.card:hover {
+  border-color:var(--orange);
+  transform:translateY(-6px);
+}
+
+/* MODAL */
+.modal {
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  justify-content:center;
+  align-items:center;
+  z-index:100;
+}
+
+.modal-content {
+  background:#0b0b0b;
+  border:1px solid var(--orange);
+  padding:40px;
+  max-width:600px;
+}
+
+.close {
+  float:right;
+  font-size:22px;
+  cursor:pointer;
+}
+
+/* FOOTER */
+footer {
+  padding:40px 8%;
+  border-top:1px solid #222;
+  font-size:14px;
+  opacity:.85;
+}
+</style>
+</head>
+
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <h1>INKKME STUDIO</h1>
+  <h3>TATTOO • PIERCING • LASER TATTOO REMOVAL</h3>
+  <p>
+    Custom tattoos. Professional piercing. Advanced laser tattoo removal.
+    Precision, hygiene, and confidence — all under one roof.
+  </p>
+  <div>
+    <button class="btn-orange">BOOK APPOINTMENT</button>
+    <button class="btn-outline">VIEW WORK</button>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <h2>ABOUT INKKME</h2>
+  <p>
+    INKKME Studio is built for people who take their body art seriously.
+    Every tattoo is custom. Every piercing is sterile. Every laser session is precise.
+    No shortcuts. No copy-paste. Only professional execution.
+  </p>
+</section>
+
+<!-- SERVICES -->
+<section>
+  <h2>SERVICES</h2>
+  <div class="cards">
+    <div class="card" onclick="openModal('tattoo')">
+      <h3>TATTOOS</h3>
+      <p>Custom-designed tattoos made exclusively for you.</p>
+    </div>
+
+    <div class="card" onclick="openModal('piercing')">
+      <h3>PIERCING</h3>
+      <p>Professional body piercing with sterile single-use needles.</p>
+    </div>
+
+    <div class="card" onclick="openModal('laser')">
+      <h3>LASER TATTOO REMOVAL</h3>
+      <p>Safe, controlled laser technology to fade or remove ink.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HYGIENE -->
+<section>
+  <h2>HYGIENE & SAFETY</h2>
+  <p>
+    Single-use needles • Medical sterilization • Fresh gloves •
+    Premium inks & jewelry • Proper aftercare support
+  </p>
+</section>
+
+<!-- PORTFOLIO -->
+<section>
+  <h2>OUR WORK</h2>
+  <p>
+    See more photos and details:
+    <br><br>
+    <a href="https://share.google/PHvsorClOz6WSllou" target="_blank">Google Photos</a> |
+    <a href="https://www.instagram.com/inkkmetattoos" target="_blank">Instagram</a>
+  </p>
+</section>
+
+<!-- CONTACT -->
+<section>
+  <h2>BOOK YOUR SESSION</h2>
+  <p>
+    Tattoo • Piercing • Laser Tattoo Removal<br><br>
+    📍 103 ,1st flr C-25girnar plaza mig main road opp mig police station indore 452001 <br>
+    📞 8871811212<br>
+    📩 inkkmeartstudio@gmail.com
+  </p>
+</section>
+
+<footer>
+  INKKME STUDIO © 2026<br>
+  Must be 18+. ID required. Artist reserves right to refuse for safety.
+</footer>
+
+<!-- MODALS -->
+<div id="tattoo" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('tattoo')">&times;</span>
+    <h2>TATTOOS</h2>
+    <p>
+      All tattoos are custom designed. Styles include fine-line, black & grey,
+      realism, lettering, geometric, traditional, neo-traditional, and cover-ups.
+    </p>
+  </div>
+</div>
+
+<div id="piercing" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('piercing')">&times;</span>
+    <h2>PIERCING</h2>
+    <p>
+      Ear, nose, lip, eyebrow, navel and custom piercings.
+      Performed using sterile single-use needles only.
+    </p>
+  </div>
+</div>
+
+<div id="laser" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeModal('laser')">&times;</span>
+    <h2>LASER TATTOO REMOVAL</h2>
+    <p>
+      Advanced laser technology used for fading or complete tattoo removal.
+      Also ideal for preparing skin for new cover-up tattoos.
+    </p>
+  </div>
+</div>
+				
+<script>
+function openModal(id) {
+  document.getElementById(id).style.display = "flex";
+}
+function closeModal(id) {
+  document.getElementById(id).style.display = "none";
+}
+</script>
+
+</body>
+</html>
