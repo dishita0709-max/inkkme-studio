@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>INKKME Admin Panel</title>
+  <style>
+    :root {
+      --bg-black: #050505;
+      --card-black: #141414;
+      --neon-orange: #ff6a00;
+      --gold: #d4af37;
+      --off-white: #f5f5f5;
+      --line: rgba(212, 175, 55, 0.35);
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: var(--off-white);
+      background: var(--bg-black);
+      line-height: 1.5;
+    }
+
+    .container {
+      width: min(900px, 92vw);
+      margin: 0 auto;
+      padding: 36px 0 72px;
+    }
+
+    .panel {
+      background: linear-gradient(155deg, #121212, #191919);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 22px;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      color: var(--gold);
+    }
+
+    p {
+      margin: 0 0 18px;
+      color: #c6c6c6;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--gold);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: #0d0d0d;
+      color: var(--off-white);
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 6px;
+    }
+
+    button,
+    .link-btn {
+      min-height: 44px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      padding: 0 18px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .primary {
+      background: var(--neon-orange);
+      color: #111;
+    }
+
+    .secondary {
+      border-color: var(--gold);
+      background: rgba(212, 175, 55, 0.08);
+      color: var(--off-white);
+    }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h1>Admin Panel</h1>
+    <p>This panel is separate from the website view. Update photos and pinned posts here, then return to the main site.</p>
+
+    <form id="admin-form">
+      <section class="panel">
+        <label for="hero-url">Hero image URL</label>
+        <div class="row">
+          <input id="hero-url" type="url" placeholder="https://..." />
+          <label><input id="hero-remove" type="checkbox" /> Remove</label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label for="gallery1-url">Gallery photo 1 URL</label>
+        <div class="row">
+          <input id="gallery1-url" type="url" placeholder="https://..." />
+          <label><input id="gallery1-remove" type="checkbox" /> Remove</label>
+        </div>
+
+        <label for="gallery2-url">Gallery photo 2 URL</label>
+        <div class="row">
+          <input id="gallery2-url" type="url" placeholder="https://..." />
+          <label><input id="gallery2-remove" type="checkbox" /> Remove</label>
+        </div>
+
+        <label for="gallery3-url">Gallery photo 3 URL</label>
+        <div class="row">
+          <input id="gallery3-url" type="url" placeholder="https://..." />
+          <label><input id="gallery3-remove" type="checkbox" /> Remove</label>
+        </div>
+      </section>
+
+      <section class="panel">
+        <label for="pin1-title">Pinned post 1 title</label>
+        <input id="pin1-title" type="text" />
+        <label for="pin1-body">Pinned post 1 body</label>
+        <textarea id="pin1-body" rows="2"></textarea>
+
+        <label for="pin2-title">Pinned post 2 title</label>
+        <input id="pin2-title" type="text" />
+        <label for="pin2-body">Pinned post 2 body</label>
+        <textarea id="pin2-body" rows="2"></textarea>
+
+        <label for="pin3-title">Pinned post 3 title</label>
+        <input id="pin3-title" type="text" />
+        <label for="pin3-body">Pinned post 3 body</label>
+        <textarea id="pin3-body" rows="2"></textarea>
+      </section>
+
+      <div class="btns">
+        <button type="submit" class="primary">Save Changes</button>
+        <button type="button" class="secondary" id="reset-admin">Reset Default</button>
+        <a href="index.html" class="link-btn secondary">Back to Website</a>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const defaults = {
+      images: {
+        hero: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=80",
+        gallery1: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=80",
+        gallery2: "https://images.unsplash.com/photo-1610792476392-8f77a4eb0fbb?auto=format&fit=crop&w=1000&q=80",
+        gallery3: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=80"
+      },
+      pins: {
+        pin1: { title: "Artist Spotlight", body: "Meet our realism specialist this week and get a free design consult with your booking." },
+        pin2: { title: "Aftercare Update", body: "New aftercare kits are now available in-studio. Ask your artist after your session." },
+        pin3: { title: "Weekend Slots", body: "Limited Saturday appointments now open for custom black & grey pieces." }
+      }
+    };
+
+    function deepClone(value) {
+      return JSON.parse(JSON.stringify(value));
+    }
+
+    function readState() {
+      try {
+        return JSON.parse(localStorage.getItem("inkkme-admin-state")) || deepClone(defaults);
+      } catch {
+        return deepClone(defaults);
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem("inkkme-admin-state", JSON.stringify(state));
+    }
+
+    function fillForm(state) {
+      ["hero", "gallery1", "gallery2", "gallery3"].forEach((key) => {
+        document.getElementById(`${key}-url`).value = state.images[key] || "";
+        document.getElementById(`${key}-remove`).checked = !state.images[key];
+      });
+
+      ["pin1", "pin2", "pin3"].forEach((key) => {
+        document.getElementById(`${key}-title`).value = state.pins[key].title;
+        document.getElementById(`${key}-body`).value = state.pins[key].body;
+      });
+    }
+
+    let state = readState();
+    fillForm(state);
+
+    document.getElementById("admin-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      ["hero", "gallery1", "gallery2", "gallery3"].forEach((key) => {
+        const shouldRemove = document.getElementById(`${key}-remove`).checked;
+        const value = document.getElementById(`${key}-url`).value.trim();
+        state.images[key] = shouldRemove ? "" : (value || defaults.images[key]);
+      });
+
+      ["pin1", "pin2", "pin3"].forEach((key) => {
+        state.pins[key].title = document.getElementById(`${key}-title`).value.trim() || defaults.pins[key].title;
+        state.pins[key].body = document.getElementById(`${key}-body`).value.trim() || defaults.pins[key].body;
+      });
+
+      saveState(state);
+      alert("Saved. Open the main website to see updates.");
+    });
+
+    document.getElementById("reset-admin").addEventListener("click", () => {
+      state = deepClone(defaults);
+      saveState(state);
+      fillForm(state);
+      alert("Reset to default values.");
+    });
+  </script>
+</body>
+</html>
