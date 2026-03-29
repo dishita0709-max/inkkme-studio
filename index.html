@@ -359,6 +359,35 @@
       font-size: 0.68rem;
     }
 
+    .hidden-photo {
+      display: none;
+    }
+
+    /* PIN POSTS */
+    .pins-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .pin-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius-md);
+      background: linear-gradient(155deg, #121212, #1a1a1a);
+      padding: 22px;
+    }
+
+    .pin-card h3 {
+      color: var(--gold);
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+    }
+
+    .pin-card p {
+      color: var(--muted-text);
+      font-size: 0.94rem;
+    }
+
     /* ABOUT + CONTACT */
     .split {
       display: grid;
@@ -397,12 +426,92 @@
       color: var(--gold);
     }
 
+    /* ADMIN */
+    .admin-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .admin-group {
+      display: grid;
+      gap: 8px;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .admin-group label {
+      font-size: 0.82rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .admin-group input,
+    .admin-group textarea {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: #0d0d0d;
+      color: var(--off-white);
+      padding: 10px 12px;
+      font: inherit;
+    }
+
+    .admin-row {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      align-items: center;
+    }
+
     footer {
       border-top: 1px solid rgba(255, 255, 255, 0.12);
-      padding: 24px 0 38px;
+      padding: 24px 0 94px;
       color: #acacac;
       text-align: center;
       font-size: 0.9rem;
+    }
+
+    .footer-quick-links {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 55;
+      background: rgba(5, 5, 5, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid rgba(255, 106, 0, 0.25);
+      box-shadow: 0 -10px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .footer-quick-links .container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      padding: 12px 0;
+    }
+
+    .footer-link {
+      min-width: 132px;
+      text-align: center;
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      background: rgba(212, 175, 55, 0.08);
+      transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    }
+
+    .footer-link:hover {
+      background: rgba(255, 106, 0, 0.18);
+      border-color: rgba(255, 106, 0, 0.65);
+      transform: translateY(-1px);
     }
 
     @media (max-width: 1024px) {
@@ -416,6 +525,10 @@
       }
 
       .gallery-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .pins-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
@@ -439,12 +552,17 @@
 
       .cards,
       .gallery-grid,
-      .stats {
+      .stats,
+      .pins-grid {
         grid-template-columns: 1fr;
       }
 
       .section {
         padding: 72px 0;
+      }
+
+      .footer-link {
+        min-width: 44%;
       }
     }
   </style>
@@ -456,7 +574,7 @@
       <nav class="nav-links">
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
-        <a href="#about">About</a>
+        <a href="#artists">Artists</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -479,7 +597,7 @@
       </div>
 
       <div class="hero-image">
-        <img src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=80" alt="Tattoo studio ambience placeholder image" />
+        <img data-editable-image="hero" src="https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=80" alt="Tattoo studio ambience placeholder image" />
         <span class="replace-note">Replace with your own image</span>
       </div>
     </div>
@@ -539,27 +657,48 @@
 
       <div class="gallery-grid">
         <article class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=80" alt="Tattoo arm design placeholder" />
+          <img data-editable-image="gallery1" src="https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=80" alt="Tattoo arm design placeholder" />
           <span class="replace-note">Swap this photo</span>
         </article>
         <article class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1610792476392-8f77a4eb0fbb?auto=format&fit=crop&w=1000&q=80" alt="Tattoo linework placeholder" />
+          <img data-editable-image="gallery2" src="https://images.unsplash.com/photo-1610792476392-8f77a4eb0fbb?auto=format&fit=crop&w=1000&q=80" alt="Tattoo linework placeholder" />
           <span class="replace-note">Swap this photo</span>
         </article>
         <article class="gallery-item">
-          <img src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=80" alt="Back tattoo concept placeholder" />
+          <img data-editable-image="gallery3" src="https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=80" alt="Back tattoo concept placeholder" />
           <span class="replace-note">Swap this photo</span>
         </article>
       </div>
     </div>
   </section>
 
-  <section id="about" class="section">
+  <section id="pins" class="section">
+    <div class="container">
+      <h2 class="section-title">Pinned Posts</h2>
+      <p class="section-subtitle">Highlight important updates, artist specials, and announcements. These posts are editable from the admin panel below.</p>
+      <div class="pins-grid">
+        <article class="pin-card">
+          <h3 data-pin-title="pin1">Artist Spotlight</h3>
+          <p data-pin-body="pin1">Meet our realism specialist this week and get a free design consult with your booking.</p>
+        </article>
+        <article class="pin-card">
+          <h3 data-pin-title="pin2">Aftercare Update</h3>
+          <p data-pin-body="pin2">New aftercare kits are now available in-studio. Ask your artist after your session.</p>
+        </article>
+        <article class="pin-card">
+          <h3 data-pin-title="pin3">Weekend Slots</h3>
+          <p data-pin-body="pin3">Limited Saturday appointments now open for custom black &amp; grey pieces.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="artists" class="section">
     <div class="container split">
       <article class="panel">
-        <h3>About INKKME</h3>
+        <h3>Artists at INKKME</h3>
         <p>
-          INKKME Tattoos is built for serious body art clients who want originality, discipline, and clean execution. Every appointment starts with concept planning and ends with professional aftercare guidance.
+          Our artists specialize in custom concepts, precision linework, black &amp; grey realism, and thoughtful cover-up planning. Every design is tailored to your story, skin flow, and long-term healing.
         </p>
       </article>
       <article id="contact" class="panel">
@@ -574,8 +713,166 @@
     </div>
   </section>
 
+  <section id="admin" class="section">
+    <div class="container">
+      <h2 class="section-title">Admin Panel</h2>
+      <p class="section-subtitle">Use this panel to change or remove photos and update pinned posts anytime.</p>
+      <form id="admin-form" class="admin-form panel">
+        <div class="admin-group">
+          <label for="hero-url">Hero image URL</label>
+          <div class="admin-row">
+            <input id="hero-url" type="url" placeholder="https://..." />
+            <label><input id="hero-remove" type="checkbox" /> Remove</label>
+          </div>
+        </div>
+
+        <div class="admin-group">
+          <label for="gallery1-url">Gallery photo 1 URL</label>
+          <div class="admin-row">
+            <input id="gallery1-url" type="url" placeholder="https://..." />
+            <label><input id="gallery1-remove" type="checkbox" /> Remove</label>
+          </div>
+          <label for="gallery2-url">Gallery photo 2 URL</label>
+          <div class="admin-row">
+            <input id="gallery2-url" type="url" placeholder="https://..." />
+            <label><input id="gallery2-remove" type="checkbox" /> Remove</label>
+          </div>
+          <label for="gallery3-url">Gallery photo 3 URL</label>
+          <div class="admin-row">
+            <input id="gallery3-url" type="url" placeholder="https://..." />
+            <label><input id="gallery3-remove" type="checkbox" /> Remove</label>
+          </div>
+        </div>
+
+        <div class="admin-group">
+          <label for="pin1-title">Pinned post 1</label>
+          <input id="pin1-title" type="text" />
+          <textarea id="pin1-body" rows="2"></textarea>
+
+          <label for="pin2-title">Pinned post 2</label>
+          <input id="pin2-title" type="text" />
+          <textarea id="pin2-body" rows="2"></textarea>
+
+          <label for="pin3-title">Pinned post 3</label>
+          <input id="pin3-title" type="text" />
+          <textarea id="pin3-body" rows="2"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" type="submit">Save Changes</button>
+          <button class="btn btn-secondary" type="button" id="reset-admin">Reset to Default</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
   <footer>
     INKKME Tattoos © 2026 · Neon orange / black / gold / white custom theme.
   </footer>
+
+  <div class="footer-quick-links" aria-label="Quick links">
+    <div class="container">
+      <a class="footer-link" href="#artists">Artists</a>
+      <a class="footer-link" href="#contact">Contact</a>
+      <a class="footer-link" href="#admin">Admin</a>
+    </div>
+  </div>
+
+  <script>
+    const defaults = {
+      images: {
+        hero: "https://images.unsplash.com/photo-1598371839696-5c5bb00bdc28?auto=format&fit=crop&w=1200&q=80",
+        gallery1: "https://images.unsplash.com/photo-1611501275019-9b5cda994e8d?auto=format&fit=crop&w=1000&q=80",
+        gallery2: "https://images.unsplash.com/photo-1610792476392-8f77a4eb0fbb?auto=format&fit=crop&w=1000&q=80",
+        gallery3: "https://images.unsplash.com/photo-1562962230-16e4623d36e6?auto=format&fit=crop&w=1000&q=80"
+      },
+      pins: {
+        pin1: { title: "Artist Spotlight", body: "Meet our realism specialist this week and get a free design consult with your booking." },
+        pin2: { title: "Aftercare Update", body: "New aftercare kits are now available in-studio. Ask your artist after your session." },
+        pin3: { title: "Weekend Slots", body: "Limited Saturday appointments now open for custom black & grey pieces." }
+      }
+    };
+
+    function readState() {
+      try {
+        return JSON.parse(localStorage.getItem("inkkme-admin-state")) || JSON.parse(JSON.stringify(defaults));
+      } catch {
+        return JSON.parse(JSON.stringify(defaults));
+      }
+    }
+
+    function saveState(state) {
+      localStorage.setItem("inkkme-admin-state", JSON.stringify(state));
+    }
+
+    function applyImages(state) {
+      document.querySelectorAll("[data-editable-image]").forEach((img) => {
+        const key = img.dataset.editableImage;
+        const value = state.images[key];
+        if (!value) {
+          img.classList.add("hidden-photo");
+          return;
+        }
+        img.src = value;
+        img.classList.remove("hidden-photo");
+      });
+    }
+
+    function applyPins(state) {
+      Object.keys(state.pins).forEach((pinKey) => {
+        const title = document.querySelector(`[data-pin-title="${pinKey}"]`);
+        const body = document.querySelector(`[data-pin-body="${pinKey}"]`);
+        if (title) title.textContent = state.pins[pinKey].title;
+        if (body) body.textContent = state.pins[pinKey].body;
+      });
+    }
+
+    function fillForm(state) {
+      ["hero", "gallery1", "gallery2", "gallery3"].forEach((key) => {
+        document.getElementById(`${key}-url`).value = state.images[key] || "";
+        document.getElementById(`${key}-remove`).checked = !state.images[key];
+      });
+
+      ["pin1", "pin2", "pin3"].forEach((key) => {
+        document.getElementById(`${key}-title`).value = state.pins[key].title;
+        document.getElementById(`${key}-body`).value = state.pins[key].body;
+      });
+    }
+
+    function initAdmin() {
+      let state = readState();
+      applyImages(state);
+      applyPins(state);
+      fillForm(state);
+
+      document.getElementById("admin-form").addEventListener("submit", (event) => {
+        event.preventDefault();
+        ["hero", "gallery1", "gallery2", "gallery3"].forEach((key) => {
+          const shouldRemove = document.getElementById(`${key}-remove`).checked;
+          const value = document.getElementById(`${key}-url`).value.trim();
+          state.images[key] = shouldRemove ? "" : (value || defaults.images[key]);
+        });
+
+        ["pin1", "pin2", "pin3"].forEach((key) => {
+          state.pins[key].title = document.getElementById(`${key}-title`).value.trim() || defaults.pins[key].title;
+          state.pins[key].body = document.getElementById(`${key}-body`).value.trim() || defaults.pins[key].body;
+        });
+
+        saveState(state);
+        applyImages(state);
+        applyPins(state);
+      });
+
+      document.getElementById("reset-admin").addEventListener("click", () => {
+        state = JSON.parse(JSON.stringify(defaults));
+        saveState(state);
+        applyImages(state);
+        applyPins(state);
+        fillForm(state);
+      });
+    }
+
+    initAdmin();
+  </script>
 </body>
 </html>
